@@ -4,7 +4,7 @@ package com.hh.store.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="users")
+@Table(name="users123",schema = "public")
 public class UserEntity {
 
     @Id
