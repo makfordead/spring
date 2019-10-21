@@ -1,10 +1,9 @@
 package com.hh.store.service;
 
-import com.hh.store.entity.user;
+import com.hh.store.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -23,20 +22,20 @@ public class serviceImpl {
     }
 
     @Transactional
-    public void save(user theUser)
+    public void save(UserEntity theUserEntity)
     {
 
         Session currentSession = entityManager.unwrap(Session.class);
-        currentSession.saveOrUpdate(theUser);
+        currentSession.saveOrUpdate(theUserEntity);
 
 
     }
     @Transactional
-    public List<user>  getusers()
+    public List<UserEntity>  getusers()
     {
         Session session = entityManager.unwrap(Session.class);
-        Query<user> theQuery = session.createQuery("from user",user.class);
-        List<user> r = theQuery.getResultList();
+        Query<UserEntity> theQuery = session.createQuery("from UserEntity", UserEntity.class);
+        List<UserEntity> r = theQuery.getResultList();
         return r;
     }
 

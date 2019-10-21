@@ -1,6 +1,6 @@
 package com.hh.store.restcontroller;
 
-import com.hh.store.entity.user;
+import com.hh.store.entity.UserEntity;
 import com.hh.store.service.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,16 +16,16 @@ public class controller {
 
 
     @GetMapping
-    public List<user> getusers() {
+    public List<UserEntity> getusers() {
 
         return service.getusers();
     }
 
     @PostMapping
-    public user createuser(@RequestBody user theUser)
+    public UserEntity createuser(@RequestBody UserEntity theUserEntity)
     {
-        service.save(theUser);
-    return theUser;
+        service.save(theUserEntity);
+    return theUserEntity;
     }
 
 
