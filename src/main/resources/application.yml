@@ -12,3 +12,10 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false
     generate-ddl: false
+
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins: https://dry-wave-98792.herokuapp.com
+        allowed-methods: GET,POST
