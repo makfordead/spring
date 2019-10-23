@@ -16,14 +16,14 @@ public class controller {
 
 
     @GetMapping
-    @CrossOrigin(origins = {"http://localhost:8080", "https://dry-wave-98792.herokuapp.com"})
+    @CrossOrigin
     public List<UserEntity> getusers() {
 
         return service.getusers();
     }
 
     @PostMapping
-    @CrossOrigin(origins = {"http://localhost:8080", "https://dry-wave-98792.herokuapp.com"})
+    @CrossOrigin
     public UserEntity createuser(@RequestBody UserEntity theUserEntity) {
         service.save(theUserEntity);
         return theUserEntity;
