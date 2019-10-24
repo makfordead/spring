@@ -38,5 +38,27 @@ public class serviceImpl {
         List<UserEntity> r = theQuery.getResultList();
         return r;
     }
+    @Transactional
+    public UserEntity LoginAuthen(String username , String password)
+    {
+        Session session = entityManager.unwrap(Session.class);
+        Query<UserEntity> theQuery = session.createQuery("from UserEntity U WHERE U.username = :username and U.password = :password");
+        theQuery.setParameter("username" , username);
+        theQuery.setParameter("password", password);
+        UserEntity theUser = new UserEntity();
+        try {
+             theUser = theQuery.setMaxResults(1).getSingleResult();
+
+        }
+        catch (Exception e)
+        {
+            System.out.println("!!!returning null object!!!");
+        }
+
+
+
+        return theUser;
+
+           }
 
 }
