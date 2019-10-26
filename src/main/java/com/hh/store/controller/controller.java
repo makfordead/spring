@@ -1,5 +1,7 @@
 package com.hh.store.controller;
 
+import com.hh.store.Utility.Base64ImageSaver;
+import com.hh.store.entity.Image;
 import com.hh.store.entity.UserEntity;
 import com.hh.store.service.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import java.util.List;
 @RequestMapping("/users")
 @CrossOrigin
 public class controller {
+
+    @Autowired
+    Base64ImageSaver imagesaver;
 
     @Autowired
     private serviceImpl service;
@@ -39,5 +44,22 @@ public class controller {
 UserEntity theUser = service.LoginAuthen(theUserEntity.getUsername(),theUserEntity.getPassword());
 return theUser;
     }
+
+    @PostMapping("/imageupload")
+    @CrossOrigin
+    public Image save(@RequestBody Image theImage)
+    {
+
+    service.save(theImage);
+    return theImage;
+    }
+    @GetMapping("/getAllImages64")
+    @CrossOrigin
+    public List<Image> getImages()
+    {
+return service.getImages();
+    }
+
+
 
 }
