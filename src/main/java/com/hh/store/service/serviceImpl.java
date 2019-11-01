@@ -91,4 +91,15 @@ public class serviceImpl {
         return r;
     }
 
+    @Transactional
+    public List<Image> getImagebyUsername(String username)
+    {
+
+        Session session = entityManager.unwrap(Session.class);
+                Query<Image> theQuery = session.createQuery("from Image d Where d.username =: username");
+                theQuery.setParameter("username",username);
+                List<Image> theList = theQuery.getResultList();
+                return theList;
+    }
+
 }

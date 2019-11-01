@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+
 @RequestMapping("/users")
 @CrossOrigin
 public class controller {
@@ -61,5 +62,12 @@ return service.getImages();
     }
 
 
+
+    @PostMapping("/getImagebyid/{username}")
+    @CrossOrigin
+    public List<Image> getImageByUser(@PathVariable("username") String username)
+    {
+        return service.getImagebyUsername(username);
+    }
 
 }
