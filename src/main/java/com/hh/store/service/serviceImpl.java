@@ -102,4 +102,25 @@ public class serviceImpl {
                 return theList;
     }
 
+    @Transactional
+    public boolean deleteImage(String id, String Username)
+    {
+        Session session = entityManager.unwrap(Session.class);
+
+            Image img = session.get(Image.class,Integer.parseInt(id));
+
+        if(img==null || !img.getUsername().equals(Username))
+             return false;
+            else {
+         session.delete(img);
+            return true;
+        }
+//            Query<Image> theQuery = session.createQuery("delete from Image d Where d.id =:id and d.username =:username");
+//            theQuery.setParameter("id",Integer.parseInt(id));
+//            theQuery.setParameter("username",Username);
+//            theQuery.executeUpdate();
+//            return true;
+
+
+    }
 }

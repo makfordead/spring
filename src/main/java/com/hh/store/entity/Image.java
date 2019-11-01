@@ -1,5 +1,7 @@
 package com.hh.store.entity;
 
+import org.springframework.context.annotation.Lazy;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Image {
 
     @Lob
     @Column(name="Image64")
+    @Basic(fetch = FetchType.LAZY)
     private String image64converted;
     public Image(){
 

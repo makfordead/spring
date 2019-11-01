@@ -1,13 +1,18 @@
 package com.hh.store.controller;
 
+import com.hh.store.HelperClasses.IdObject;
 import com.hh.store.Utility.Base64ImageSaver;
 import com.hh.store.entity.Image;
 import com.hh.store.entity.UserEntity;
 import com.hh.store.service.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -70,4 +75,15 @@ return service.getImages();
         return service.getImagebyUsername(username);
     }
 
+    @PostMapping("/DeleteImageById/{id}/{username}")
+    @CrossOrigin
+    public ResponseEntity<IdObject> delete(@PathVariable("id") String id, @PathVariable("username") String username)
+    {
+        if(service.deleteImage(id,username)) {
+            System.out.println(id);
+            System.out.println(username);
+            return new ResponseEntity<>(new IdObject(Integer.parseInt(id)),HttpStatus.OK);
+        }
+        else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }
